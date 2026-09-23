@@ -26,21 +26,38 @@ public class memorydemo {
         applyBonusToAccount(myAccount);
         System.out.println("myAccount: " + myAccount.balance);
         
-    } // <-- Added closing brace to properly end the main method here
+        // --- NEW MODIFICATIONS MOVED TO MAIN ---
+        
+        // Testing Primitive Parameter Passing
+        int cash = 500;
+        applyBonusToAmount(cash);
+        System.out.println("cash: " + cash); // Will print 500 because primitives are passed by value!
 
-    // These methods now sit cleanly inside the class, but outside of main
+        // Handling Null References
+        BankAccount acc3 = null;
+        
+        // UNCOMMENT THE LINE BELOW TO SEE THE CRASH:
+        // System.out.println(acc3.balance); // This throws a NullPointerException because acc3 points to nothing.
+
+        // Safe check preventing a crash
+        if (acc3 != null) {
+            System.out.println(acc3.balance);
+        } else {
+            System.out.println("Account not found");
+        }
+        
+    } // End of main method
+
+    // These helper methods stay cleanly outside of main
     public static void applyBonusToAccount(BankAccount acc) {
         acc.balance = acc.balance + 100;
     }
 
     public static void applyBonusToAmount(int amount) {
         amount = amount + 100;
-        int cash = 500;
-applyBonusToAmount(cash);
-System.out.println("cash: " + cash);
     }
 
-} // <-- Added closing brace to properly end the memorydemo class here
+} // End of memorydemo class
 
 // --- empty class to help code run---
 class BankAccount {
